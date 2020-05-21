@@ -1,5 +1,12 @@
 package day2_ClassesAndObjects;
-// Task 2
+
+        /*
+        Task 2:
+        Create a method that will accept a number and check if the number is an Armstrong number.
+        If the number is an Armstrong number return true otherwise return false.
+
+         */
+
 public class Armstrong {
 
     // 153 > 1^3 + 5^3 + 3^3 == 153
@@ -32,7 +39,7 @@ public class Armstrong {
         int digits = num;
         int sum = 0;
         int power = String.valueOf(num).length();
-        
+
         // 1
         // num % 10 --> last digit
 
