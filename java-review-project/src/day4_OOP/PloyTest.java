@@ -19,5 +19,8 @@ public class PloyTest {
         e.m2();
         c.m2();
       //  b.m2();
+
+        B b2 = c;
+        C c2 = (C)b;
     }
 }
