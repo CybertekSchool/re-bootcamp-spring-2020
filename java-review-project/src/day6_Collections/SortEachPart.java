@@ -20,26 +20,37 @@ public class SortEachPart {
     }
 
     public static String sortEach(String str) {
+        //DC501
+        String sorted = ""; // where the final result is stored
+        String each = ""; // where the substring of each part (digit/letter)
 
-        String sorted = "";
-        String each = "";
+        for(int i=0; i < str.length(); i++) { // loops through the whole String
 
-        for(int i=0; i < str.length(); i++) {
-
-            each += str.charAt(i);
+            each += str.charAt(i); // always adds the character by the index
+                                    // that were are at (i) to the each String
 
             if(Character.isLetter(str.charAt(i))){
+            // if we are in here the char is a letter
+                // Next we check for if the next char is also a letter
+                // If the next char is a letter, then everything is okay
+                // if the next char is not a letter, we need to take the each
+                // substring and sort it
+
+                // i == str.length()-1   -> when we get to the last index, we forcing
+                // the substring part each to be sorted
 
                 if(i == str.length()-1 || !Character.isLetter(str.charAt(i+1))){
-                    sorted += sortSubstring(each);
-                    each = "";
+                    sorted += sortSubstring(each); // break the each String and sort
+                                                    // the characters
+                    each = "";  // reset each for the digits
                 }
 
-            } else {
-
+            } else {  // if we are here, the char we are looking is a digit
+                // checks if the next char is not a digit, if not then it
+                // does the same as above and sort the digits substring of each
                if(i == str.length()-1 || !Character.isDigit(str.charAt(i+1))) {
                    sorted += sortSubstring(each);
-                   each = "";
+                   each = ""; // reset each to get ready for the letter
                }
 
             }
