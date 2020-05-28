@@ -1,14 +1,12 @@
 package day6_Collections;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class SortEachPart2 {
 
     public static void main(String[] args) {
-        System.out.println(sortEach("DC501GCCCA098911"));
+        String s = sortEach("DC501GCCCA098911");
+        System.out.println(s);
 
         // dc 501 gcca
     }
@@ -16,15 +14,15 @@ public class SortEachPart2 {
 
     public static String sortEach(String str) {
 
-        List<Set<String>> each = new ArrayList<>();
-        Set<String> set = new TreeSet<>();
+        String word = "";
+        Queue<String> q = new PriorityQueue<>();
 
         for(int i=0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            boolean reset = false;
-            set.add("" + c);
 
-            if(Character.isLetter(c)) {
+            boolean reset = false;
+            q.add("" + str.charAt(i));
+
+            if(Character.isLetter(str.charAt(i))) {
                 if(i == str.length() -1 ||!Character.isLetter(str.charAt(i+1))) {
                     reset = true;
                 }
@@ -35,14 +33,14 @@ public class SortEachPart2 {
             }
 
             if(reset) {
-                each.add(set);
-                set.clear();
+                word += q.toString().replace("[","").replace("]","").replace(", ","");
+                q.clear();
             }
+
 
         }
 
-        System.out.println(each);
-        return "";
+        return word;
     }
 
 }
