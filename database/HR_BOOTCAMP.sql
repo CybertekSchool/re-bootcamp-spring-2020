@@ -209,19 +209,3 @@ HAVING COUNT(*) < 5 ;
     FROM EMPLOYEES 
     WHERE SALARY IN (4800, 12008, 8200 , 11000 ) ; 
     
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
