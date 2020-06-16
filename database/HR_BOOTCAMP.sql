@@ -201,7 +201,18 @@ HAVING COUNT(*) < 5 ;
     
     
     --- QUESTION : HOW TO FIND COUNT OF ALL THE  EMPLOYEES MAKE MORE THAN AVERAGE SALARY 
+    SELECT Count(*) FROM employees
+    WHERE salary > (select avg(salary) from employees) ;
     
+    
+    --- QUESTION : HOW TO FIND COUNT OF ALL THE EMPLOYEES IN EACH DEP
+        -- WHO MAKE MORE THAN AVERAGE SALARY 
+        -- ONLY DISPLAY THE DEPARTMENTS IF THE COUNT IS MORE THAN 5
+    SELECT department_id, Count(*) ABOVE_AVG_CNT FROM employees
+    WHERE salary > (select avg(salary) from employees) 
+    GROUP BY department_id
+    HAVING Count(*) > 5 
+    ;
     
     
     -- find the names of the employees with salary of 4800, 12008, 8200 , 11000 
