@@ -50,7 +50,8 @@ public class SpartanHelloTests {
         then().                     // ValidatableResponse
                 statusCode(200).
                 contentType(ContentType.TEXT).
-                    body(equalTo("Hello from Sparta"))
+                body( equalTo("Hello from Sparta") )
+
 
         ;
 
@@ -83,7 +84,8 @@ public class SpartanHelloTests {
                 log().all().
                 statusCode( is(200) ).
                 header("Content-Type","text/plain;charset=UTF-8").
-                header("Date",not(nullValue()) ). // workaround for header exists
+                header("Date",not( nullValue() ) ). // workaround for header exists
+                header("NonExistingHeader", nullValue() ).
                 body(is("Hello from Sparta"));
 
 

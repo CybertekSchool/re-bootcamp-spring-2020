@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.* ;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +49,19 @@ public class SpartanBasic {
                 log().all().  // this is logging response only
                 statusCode(200)
         ;
+
+    }
+
+    @Test
+    public void test3(){
+
+        Response res = get("/hello");
+        System.out.println( res.statusCode() );
+        System.out.println( res.getContentType() );
+        System.out.println( res.getHeader("Date") );
+
+        assertEquals(200, res.statusCode());
+
 
     }
 
