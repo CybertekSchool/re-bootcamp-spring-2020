@@ -1,0 +1,111 @@
+
+Scenario for class :
+
+Basic of RestAssured without chaining
+with junit.
+
+Requests
+	Verbs
+	Headers
+	Path Params
+	Query Params
+	Body/ Payload
+
+Response
+	Status code
+	Headers
+	Body/ Payload
+
+Given no headers are provided
+When User send request to /api/hello
+Then Response status code should be 200
+and  header should have content Type / text/plain
+and header should contains Date
+and body should be "Hello from Sparta"
+and Content-Length should be 17
+
+
+
+
+Given no headers are provided
+When User send request to /Spartans
+Then Response status code should be 200
+and  header should have content Type / json
+and  header should contains Date
+
+Given Accept headers are provided as JSON
+When User send request to /api/spartans
+Then Response status code should be 200
+and  header should have content Type / json
+and  header should contains Date
+
+Given Accept headers are provided as XML
+When User send request to /api/spartans
+Then Response status code should be 200
+and  header should have content Type / XML
+and  header should contains Date
+
+Given no headers are provided
+When User send request to /api/spartans/2
+Then Response status code should be 200
+and header should have content Type / JSON
+and json object id should be 2
+
+Given Accept header is provided as Json
+When User send request to /api/spartans/2
+Then Response status code should be 200
+and header should have content Type / JSON
+and json object id should be 2
+
+
+Given Accept header is provided as JSON
+When User send request to /api/spartans/20000
+Then Reponse status code should be 404
+and header should have content Type / JSON
+and response payload should contains "Spartan Not Found"
+
+
+Given Accept header is provided as XML
+When User send request to /api/spartans/10
+Then Response status code should be 406 not acceptable
+and header should have content Type / JSON
+and response payload should contains "Spartan Not Found"
+
+
+
+--- As a user i want to be able to add new resources
+
+Given ContentType header is not provided
+When User send request to /api/spartans with below valid json
+{
+	"name":"Jon Snow"
+	"gender":"Male"
+	"phone":"1231231231"
+}
+
+Then Reponse status code should be 405
+and header should have content Type / JSON
+and response payload should contains " Unsupported Media Type"
+
+
+Given ContentType header is provided as JSON
+When User send request to /api/spartans with below valid json
+{
+	"name":"Jon Snow"
+	"gender":"Male"
+	"phone":"1231231231"
+}
+
+Then Response status code should be 201
+and header should have content Type / JSON
+and header should contain Location key which represent location of newly created resource
+and response payload should contains "A Spartan is Born!"
+
+
+
+
+
+
+
+
+

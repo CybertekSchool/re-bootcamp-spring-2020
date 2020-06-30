@@ -1,0 +1,24 @@
+{
+  "title": "The is Simple Schema for Get 1 Spartan response, it define required structure of how json object should look like",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "gender",
+    "phone"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "integer"
+    }
+  }
+}
