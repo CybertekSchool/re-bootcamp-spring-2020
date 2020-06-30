@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="LibraryApp Copy" tests="3" time="0.093">
+  <testsuite name="Get Token" id="75576e24-f3d0-48c2-bbab-c4fe13c6eed7" timestamp="2020-06-29T16:26:13.845Z" tests="1" failures="0" errors="0" time="0.065">
+    <testcase name="Status code is 200" time="0.065" classname="LibraryAppCopy"/>
+  </testsuite>
+  <testsuite name="Dashboard Stats" id="a9ece457-9b93-41eb-8016-141499a442a7" timestamp="2020-06-29T16:26:13.845Z" tests="2" failures="0" errors="0" time="0.014">
+    <testcase name="Status code is 200" time="0.014" classname="LibraryAppCopy"/>
+    <testcase name="Testing the book count" time="0.014" classname="LibraryAppCopy"/>
+  </testsuite>
+  <testsuite name="Decode" id="4c3ad5a6-a4ee-4384-b0bb-d43ac486fc69" timestamp="2020-06-29T16:26:13.845Z" tests="2" failures="0" errors="0" time="0.014">
+    <testcase name="Status code is 200" time="0.014" classname="LibraryAppCopy"/>
+    <testcase name="Check the email match the expected email" time="0.014" classname="LibraryAppCopy"/>
+  </testsuite>
+</testsuites>

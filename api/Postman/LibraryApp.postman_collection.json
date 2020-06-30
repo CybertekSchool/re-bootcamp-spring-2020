@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "b0f5f665-4d5e-41ec-8a7f-0b7a48c62350",
+		"name": "LibraryApp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "librarian67@library",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "5ktpB2e5",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/login",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Decode",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/decode",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"decode"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dashboard Stats",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "in",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "key",
+							"value": "x-library-token",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/dashboard_stats",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"dashboard_stats"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Book Category",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-library-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/get_book_categories",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"get_book_categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Available Book List",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-library-token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/get_book_list_for_borrowing",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"get_book_list_for_borrowing"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Books by UserID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-library-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/get_borrowed_books_by_user/2071",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"get_borrowed_books_by_user",
+						"2071"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Borrow book",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-library-token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "book_id",
+							"value": "398",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "2071",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/book_borrow",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"book_borrow"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Return Book",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-library-token",
+						"type": "text",
+						"value": "{{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "book_id",
+							"value": "398",
+							"type": "text"
+						},
+						{
+							"key": "user_id",
+							"value": "2071",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://library1.cybertekschool.com/rest/v1/return_book",
+					"protocol": "http",
+					"host": [
+						"library1",
+						"cybertekschool",
+						"com"
+					],
+					"path": [
+						"rest",
+						"v1",
+						"return_book"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0b42bd65-19a7-4ecb-897a-062e2ca946e6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "84bb5c9c-f773-4be3-92c5-5c8d080e7581",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "ed70e938-a7f9-4a7f-aed2-c8d5bc5bde69",
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjp7ImlkIjoiMjA3MSIsImZ1bGxfbmFtZSI6IlRlc3QgU3R1ZGVudCAxMzMiLCJlbWFpbCI6InN0dWRlbnQxMzNAbGlicmFyeSIsInVzZXJfZ3JvdXBfaWQiOiIzIn0sImlhdCI6MTU5MjkzNDYzOSwiZXhwIjoxNTk1NTI2NjM5fQ.Ck9K_ulkW4qBS8g0ogyd50oF5e9lWBiDH7H2kabKC8U"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

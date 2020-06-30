@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "dba45c28-bbdc-407c-be51-4ddd5673aeef",
+		"name": "SpartanTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add One Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9cac902c-d347-41dc-bdab-9e55d976b31d",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"// we want to save the ID generated from this post request ",
+							"// save it into global variable called new_id_generated ",
+							"// so we can use it for the next request ",
+							"// pm.globals.set(\"new_id_generated\", 100);",
+							"",
+							"",
+							"// This is the code to store entire json response body into a variable ",
+							"var jsonData = pm.response.json();",
+							"console.log(\"Hello world\"); ",
+							"// how do we get ID , --> jsonPath ",
+							"// console.log(  jsonData.data.id   ); ",
+							"",
+							"//so we can use it for the next request ",
+							"pm.globals.set(\"new_id_generated\", jsonData.data.id);",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "1890d8bf-5c22-4003-b65a-69e7c784e0ab",
+						"exec": [
+							"// we want to print out the data we used for the post request ",
+							"// so that we can see clearly from the log . what data we have added",
+							"",
+							"console.log(    pm.variables.get(\"name\")  ",
+							"            + \" | \" + pm.variables.get(\"gender\")  ",
+							"            +  \" | \" + pm.variables.get(\"phone\") ); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"{{name}}\", \n    \"gender\" : \"{{gender}}\",\n    \"phone\" : {{phone}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/spartans",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"spartans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get 1 Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0a4d8ec9-2f3b-4786-8ea0-4f2034134495",
+						"exec": [
+							"",
+							"pm.test(\"Getting single data Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"    pm.response.to.have.header(\"Content-Type\",\"application/json;charset=UTF-8\");",
+							"    ",
+							"});",
+							"",
+							"//  test each key value pair from the response match the data being added in previous steps ",
+							"",
+							"pm.test(\"Check the returned data match added data \", function () {",
+							"    // saving entire response as json object ",
+							"    ",
+							"    var responseJson = pm.response.json();",
+							"    // verify each and every field ",
+							"    ",
+							"    // our expected data is saved into collection variable ",
+							"    // and we can read it as pm.variables.get(\"name\")",
+							"    // in order to check a value equals to another value ",
+							"    // postman provide ",
+							"",
+							"    // pm.expect( \"expected value here\" ).to.eql(\" actual value here \");",
+							"    // below 3 lines of code checking the fields match the expected ",
+							"    pm.expect( pm.variables.get(\"name\") ).to.eql(responseJson.name);",
+							"    pm.expect( pm.variables.get(\"gender\") ).to.eql(responseJson.gender);",
+							"    // make sure the data type match , otherwise it will give you error",
+							"    pm.expect( pm.variables.get(\"phone\")+\"\" ).to.eql( responseJson.phone+\"\" );",
+							"",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/spartans/:theID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"spartans",
+						":theID"
+					],
+					"variable": [
+						{
+							"key": "theID",
+							"value": "{{new_id_generated}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete 1 Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2de640dd-19b1-4989-a488-a5455be7a7d2",
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/spartans/:theID",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"spartans",
+						":theID"
+					],
+					"variable": [
+						{
+							"key": "theID",
+							"value": "{{new_id_generated}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Spartan",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "75632705-248a-4fcc-aa6d-bbfbc40428bc",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "92b8a7a3-336c-4f02-8eaa-d681b892b51c",
+						"exec": [
+							"",
+							"//console.log(\"This is the right before running this request \");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/spartans",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"spartans"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "542f460f-b863-4a2f-8d6f-7520dc7dc46e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "986f0488-c010-4353-a110-85dbaeb5e1dc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "36fb9741-b174-4c48-9897-d52ee41a8ed4",
+			"key": "name",
+			"value": "Sample"
+		},
+		{
+			"id": "857ab1f9-bd15-40e8-b117-05eafc1f671a",
+			"key": "gender",
+			"value": "Male"
+		},
+		{
+			"id": "831f2918-416a-410c-8929-6c932a4feddf",
+			"key": "phone",
+			"value": "1234567894"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
