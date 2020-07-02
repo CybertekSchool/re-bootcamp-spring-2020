@@ -25,45 +25,52 @@ public class ObjectMapperExample {
                 "}" ;
         System.out.println(data);
 
-
+        //
         ObjectMapper mapper = new ObjectMapper();
         SpartanPojo sp = mapper.readValue(data, SpartanPojo.class);
         System.out.println("sp = " + sp);
 
+
         SpartanPojo sp1 = mapper.readValue(new File("data.json"), SpartanPojo.class);
-        System.out.println("sp1 = " + sp1);
+        System.out.println("sp1 from the file = " + sp1);
 
         File jsonArrayFile = new File("all_data.json");
         // This will return list of LinkedHashmap
         List sps = mapper.readValue(jsonArrayFile, List.class);
+
         System.out.println("sps = " + sps);
         System.out.println("sps.get(0).getClass() = " + sps.get(0).getClass());
 
+
+
         // This will return List of Spartan
-        List<SpartanPojo> allSpartans = mapper.readValue(jsonArrayFile, new TypeReference<List<SpartanPojo> >() { } ) ;
+        List<SpartanPojo> allSpartans =
+                mapper.readValue(jsonArrayFile, new TypeReference< List<SpartanPojo> >() { } ) ;
         System.out.println("allSpartans = " + allSpartans);
-
-
+        System.out.println("Class type of first item in the list = " + allSpartans.get(0).getClass());
 
         //-------- write object to json
-
+        System.out.println();
+        sp1.setId(100);
+        sp1.setName("Super User");
         System.out.println( "sp1 as Json String " +  mapper.writeValueAsString(sp1)  );
+
 
 
         // ------- write with pretty print
         String str1 = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(sp1);
         System.out.println("pretty json = " + str1);
-
-        // --- enable the pretty print globally
+//
+//        // --- enable the pretty print globally
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         String str1Pretty = mapper.writeValueAsString(sp1);
-        System.out.println("str1Pretty = " + str1Pretty);
-
-
-
+        System.out.println("str1 Pretty = " + str1Pretty);
+//
+//
+//
         // -------- write to a json file
 
-        mapper.writeValue(new File("sp1.json"), sp1);
+        mapper.writeValue(new File("sp2.json"), sp1);
 
 
     }

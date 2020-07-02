@@ -19,9 +19,11 @@ public class Headline{
         return sourceID;
     }
 
+    // map this field to source
+    // but use the value of id field inside source object
     @JsonProperty("source")
     public void setSourceID(Map<String, Object> source) {
-        this.sourceID = String.valueOf( source.get("id") );
+        this.sourceID =  (String) source.get("name") ;
     }
 
     public String getAuthor() {

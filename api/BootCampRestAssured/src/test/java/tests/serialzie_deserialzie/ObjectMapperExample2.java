@@ -21,16 +21,19 @@ public class ObjectMapperExample2 {
 
         SpartanPojo p1 = new SpartanPojo("Jon","Male",1231231231L);
         p1.setId(123);
+        System.out.println("p1 = " + p1);
+
         Map<String,Object> myDataMap = new LinkedHashMap<>();
 
         myDataMap.put("success","a spartan is born");
         myDataMap.put("data",p1);
-
+        myDataMap.put("message","thanks for attending api bootcamp, see you next time");
+//
         System.out.println("myDataMap = " + myDataMap);
-
+//
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT); // pretty print
-
+//
         String jsonStr = mapper.writeValueAsString(myDataMap) ;
         System.out.println("jsonStr = " + jsonStr);
 
