@@ -19,6 +19,7 @@ public class SpartanBasic {
         RestAssured.port = 8000 ;
         RestAssured.basePath = "/api";
     }
+
     @Test
     public void test1(){
 

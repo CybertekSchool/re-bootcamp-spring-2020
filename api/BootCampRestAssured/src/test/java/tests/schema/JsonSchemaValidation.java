@@ -2,6 +2,7 @@ package tests.schema;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.module.jsv.JsonSchemaValidator;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -31,12 +32,12 @@ public class JsonSchemaValidation {
     public void SingleSpartanResponse_JsonSchema_Test() {
         given()
                 .log().all().
-                when()
-                .get("/spartans/11")
-                .then()
+        when()
+                .get("/spartans/213")
+        .then()
                 .log().all()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("SingleSpartanSchema.json"));
+                .body( matchesJsonSchemaInClasspath("SingleSpartanSchema.json"));
 
     }
 
@@ -57,7 +58,7 @@ public class JsonSchemaValidation {
                 then()
                 .log().all()
                 .assertThat()
-                .body(matchesJsonSchemaInClasspath("SpartanArraySchema.json"));
+                .body(JsonSchemaValidator.matchesJsonSchema("SpartanArraySchema.json"));
 
     }
 

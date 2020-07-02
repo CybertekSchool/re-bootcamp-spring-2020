@@ -1,0 +1,135 @@
+{
+  "title": "The is Simple Schema for Search Spartan response, it define required structure of how json object should look like",
+  "type": "object",
+  "required": [
+    "content",
+    "pageable",
+    "totalPages",
+    "totalElements",
+    "last",
+    "size",
+    "number",
+    "sort",
+    "numberOfElements",
+    "first",
+    "empty"
+  ],
+  "properties": {
+    "content": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "gender",
+          "phone"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "pageable": {
+      "type": "object",
+      "required": [
+        "sort",
+        "offset",
+        "pageSize",
+        "pageNumber",
+        "unpaged",
+        "paged"
+      ],
+      "properties": {
+        "sort": {
+          "type": "object",
+          "required": [
+            "sorted",
+            "unsorted",
+            "empty"
+          ],
+          "properties": {
+            "sorted": {
+              "type": "boolean"
+            },
+            "unsorted": {
+              "type": "boolean"
+            },
+            "empty": {
+              "type": "boolean"
+            }
+          }
+        },
+        "offset": {
+          "type": "integer"
+        },
+        "pageSize": {
+          "type": "integer"
+        },
+        "pageNumber": {
+          "type": "integer"
+        },
+        "unpaged": {
+          "type": "boolean"
+        },
+        "paged": {
+          "type": "boolean"
+        }
+      }
+    },
+    "totalPages": {
+      "type": "integer"
+    },
+    "totalElements": {
+      "type": "integer"
+    },
+    "last": {
+      "type": "boolean"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "sort": {
+      "type": "object",
+      "required": [
+        "sorted",
+        "unsorted",
+        "empty"
+      ],
+      "properties": {
+        "sorted": {
+          "type": "boolean"
+        },
+        "unsorted": {
+          "type": "boolean"
+        },
+        "empty": {
+          "type": "boolean"
+        }
+      }
+    },
+    "numberOfElements": {
+      "type": "integer"
+    },
+    "first": {
+      "type": "boolean"
+    },
+    "empty": {
+      "type": "boolean"
+    }
+  }
+}
