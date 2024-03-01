@@ -12,6 +12,7 @@ public class Eu3_Practice {
         // create a pull request(PR)
         // to asl original repo owner
         // to merge your change
+        // get the pr
 
 
 
